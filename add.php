@@ -4,6 +4,9 @@
 // The POST method is considered secure because it does the opposite of the GET method
 // The POST method protects users from cross site scripting
 
+//CREATE AN ASSOCIATIVE ARRAY VARIABLE TO STORE ERRORS
+$errors = array('email' => '', 'title' => '', 'ingredients' => '');
+
 //CHECKS if user is sending data to the server (sends an associative array) OR If empty
 if(isset($_POST['submit'])){ 
     // echo htmlspecialchars($_POST['email']); //this email here is a key, the value of the key is what the user typed on the form
@@ -21,7 +24,8 @@ if(isset($_POST['submit'])){
             $email = $_POST['email']; //grabing the value from the form and storing it in the variable $email
             // CHECK IF IT'S AN ACTUAL EMAIL using php filter form
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){// THE filter_var() function is built-in to php
-                echo 'email must be a valid email address';
+                // echo 'email must be a valid email address <br/>';
+                $errors['email'] = 'email must be a valid email address'; //assigning the error to the associative array of errors
             }
         }
         //check title
@@ -33,8 +37,9 @@ if(isset($_POST['submit'])){
             // Cause PHP does to have built-in filter for title etc.
             $title = $_POST['title'];
             // CHECKING IF it actually matches our RegEx using php
-            if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $title)){ //first parameter is matching against the second for validation
-                echo 'Ingredients must be a comma separated list';
+            if(!preg_match('/^[a-zA-Z\s]+$/', $title)){ //first parameter is matching against the second for validation
+                echo 'Title must be letters and spaces only <br/>';
+                $erros['title'] = 'Title must be letters and spaces only'; //assigning the error to the associative array of errors
             }
 
         }
@@ -47,8 +52,9 @@ if(isset($_POST['submit'])){
             // Cause PHP does to have built-in filter for ingredients etc.
             $ingredients = $_POST['ingredients'];
             // CHECKING IF it actually matches our RegEx using php
-            if(!preg_match('/^[a-zA-Z\s]+$/', $ingredients)){ //first parameter is matching against the second for validation
-                echo 'Ingredients must be letters and spaces only';
+            if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){ //first parameter is matching against the second for validation
+                echo 'Ingredients must be a comma separated list <br/>';
+                $errors['ingredients'] = 'Ingredients must be a comma separated list' //assigning the error to the associative array of errors
             }
         }
 }; // END OF POST CHECK
