@@ -72,10 +72,28 @@ if(isset($_POST['submit'])){
         if(array_filter($errors)){ // array_filter circles through an array and performs callBack functions
             echo 'There are erros in the form'; // ..on each of the function which can be defined in the code block                                 
         } else {                                    //NOTE: if we don't define the callBack function, it still runs through the array
-            // Re-direct user
-            header('Location: index.php'); //NOTE: in the future, we want to save the data to the database instead before we re-direct them to the homepage
+            
+            //SAVING DATA TO THE DATABASE
+            //USING mysqli_real_escape_string() function which escape any kind of malicious sql characters or any sensitive sql character, and it proctect us from sql injections
+            $email = mysqli_real_escape_string($conn, $_POST['email']); //which overides the email variable created at LINE 30
+            $title = mysqli_real_escape_string($conn, $_POST['title']);
+            $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
+            //NOW WE HAVE THE DATA WE WANT TO IMSERT TO OUR DATABASE
+            //Now we create the sql string that will do that for us
+            $sql = "INSERT INTO pizzas(title,email,ingredients) VALUES('$title', '$email', '$ingredients')";
+
+            //save to db and check
+            if(mysqli_query($conn, $sql)){
+                //if success saved
+                // Re-direct user
+            header('Location: index.php');
+            }else{
+                echo 'query error: ' . mysqli_error($conn);
+            }
+
             //RESET DEFUALT VALUES FOR INPUT FIELD VARIABLE
             $email = $title = $ingredients = "";
+
             
         }
 
