@@ -70,6 +70,15 @@ mysqli_close($conn);
                 </div>
             </div>
         <?php endforeach; ?>
+
+        <!-- A QUICK GUIDE TO USE ": & endforeach;" SYNTAX -->
+        <!-- Uncomment below to test code -->
+        <!-- <?php if(count($pizzas) >= 3) : ?>
+            <p>there are 3 or more pizzas</p>
+        <?php else: ?>
+            <p>there are less than 3 pizzas</p>
+        <?php endif; ?> -->
+
         </div>
     </div>
 
