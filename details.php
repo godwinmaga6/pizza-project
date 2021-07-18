@@ -20,7 +20,7 @@ if(isset($_GET['id'])){
     mysqli_close($conn);
 
     //print to test
-    print_r($pizza);
+    // print_r($pizza); //commented this LINE
 
 }
 
@@ -31,8 +31,12 @@ if(isset($_GET['id'])){
 <?php include('templates/header.php');?>
 
 <div class="container center">
-    <?php if() : ?>
-
+    <?php if($pizza) : ?>
+        <h4><?php echo htmlspecialchars($pizza['title']); ?></h4>
+        <p>Created by: <?php echo htmlspecialchars($pizza['email']); ?> </p>
+        <p><?php echo date($pizza['created_at']); ?></p>
+        <h5>Ingredients:</h5>
+        <p><?php echo htmlspecialchars($pizza['ingredients']) ?></p>
     <?php else : ?>
     
     <?php endif ?>
