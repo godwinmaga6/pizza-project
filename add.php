@@ -1,4 +1,7 @@
 <?php 
+
+include('config/db_connect.php');
+
 // THE POST & GET Method
 // The GET method is considered unsecure as it renders user input on the url input field
 // The POST method is considered secure because it does the opposite of the GET method
