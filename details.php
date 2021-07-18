@@ -30,7 +30,7 @@ if(isset($_GET['id'])){
 <html lang="en">
 <?php include('templates/header.php');?>
 
-<div class="container cemter">
+<div class="container center">
     <?php if() : ?>
 
     <?php else : ?>
