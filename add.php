@@ -17,8 +17,9 @@ if(isset($_POST['submit'])){
     //check if the form is not empty
         //check email
         if(empty($_POST['email'])){
-            echo 'An email is required <br/>'; //if empty is echo this
-        }{
+            // echo 'An email is required <br/>'; //if empty is echo this
+            $errors['email'] = 'An email is required'; ad//if empty is adds error to array instead of echo in LINE 20
+        }else {
             // echo htmlspecialchars($_POST['email']); //if not empty, we just echo what is expected in LINE 9
             // USING php built-in form filter to validate the email
             $email = $_POST['email']; //grabing the value from the form and storing it in the variable $email
@@ -30,8 +31,9 @@ if(isset($_POST['submit'])){
         }
         //check title
         if(empty($_POST['title'])){
-            echo 'A title is required <br/>'; //if empty is echo this
-        }{
+            // echo 'A title is required <br/>'; //if empty is echo this
+            $errors['title'] = 'A title is required'; //if empty is adds error to array instead of echo in LINE 34
+        }else {
             // echo htmlspecialchars($_POST['title']); //if not empty, we just echo what is expected in LINE 10
             // USING RegEx (Regular Expressions) to validate the (Title). 
             // Cause PHP does to have built-in filter for title etc.
@@ -45,8 +47,9 @@ if(isset($_POST['submit'])){
         }
         //check ingredients
         if(empty($_POST['ingredients'])){
-            echo 'At least one ingredient is required <br/>'; //if empty is echo this
-        }{
+            // echo 'At least one ingredient is required <br/>'; //if empty is echo this
+            $errors['ingredients'] = 'At least one ingredient is required'; //if empty is adds error to array instead of echo in LINE 50
+        }else {
             // echo htmlspecialchars($_POST['ingredients']); //if not empty, we just echo what is expected in LINE 11
             // USING RegEx (Regular Expressions) to validate the (comma separated list). 
             // Cause PHP does to have built-in filter for ingredients etc.
