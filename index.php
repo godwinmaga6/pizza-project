@@ -20,7 +20,7 @@ if(!$conn){
 // $sql = 'SELECT * FROM pizzas'; //the SELECT means to select. The * means (all). The FROM (specify the table we want to get data from)
 
 //In cases where you don't want all the data from the table as oppose to the above LINE use:
-$sql = 'SELECT title, ingredients, id FROM pizzas';
+$sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
 
 //2 MAKE QUERY & GET RESULT
 $result = mysqli_query($conn, $sql); //NOTE this result isn't an array & can't be used at this stage
