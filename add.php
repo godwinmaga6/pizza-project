@@ -4,6 +4,8 @@
 // The POST method is considered secure because it does the opposite of the GET method
 // The POST method protects users from cross site scripting
 
+//SET DEFUALT VALUES FOR INPUT FIELD VARIABLE
+$email = $title = $ingredients = "";
 //CREATE AN ASSOCIATIVE ARRAY VARIABLE TO STORE ERRORS
 $errors = array('email' => '', 'title' => '', 'ingredients' => '');
 
@@ -18,7 +20,7 @@ if(isset($_POST['submit'])){
         //check email
         if(empty($_POST['email'])){
             // echo 'An email is required <br/>'; //if empty is echo this
-            $errors['email'] = 'An email is required'; ad//if empty is adds error to array instead of echo in LINE 20
+            $errors['email'] = 'An email is required'; //if empty is adds error to array instead of echo in LINE 20
         }else {
             // echo htmlspecialchars($_POST['email']); //if not empty, we just echo what is expected in LINE 9
             // USING php built-in form filter to validate the email
@@ -72,13 +74,13 @@ if(isset($_POST['submit'])){
     <h4 class="center">Add a Pizza</h4>
     <form action="add.php" method="POST" class="white">
         <label>Your Email:</label>
-        <input type="text" name="email">
+        <input type="text" name="email" value="<?php echo htmlspecialchars($email); //persist user inputs on the form field ?>">
         <div class="red-text"><?php echo $errors['email'];?></div>
         <label>Your Title:</label>
-        <input type="text" name="title">
+        <input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
         <div class="red-text"><?php echo $errors['title'];?></div>
         <label>Your Ingredients (comma separated):</label>
-        <input type="text" name="ingredients">
+        <input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
         <div class="red-text"><?php echo $errors['ingredients'];?></div>
 
         <div class="center">
