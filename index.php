@@ -38,6 +38,8 @@ mysqli_close($conn);
 //NTOE: Always echo to preview
 // print_r($pizzas);
 
+//SAMPLE CODE FOR CONVERTING STRINGS SEPARATED WITH COMMAS INTO AN ARRAY
+// print_r(explode(',', $pizzas[0]['ingredients']));
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +55,13 @@ mysqli_close($conn);
                 <div class="card z-depth-0">
                     <div class="card-content center">
                         <h6><?php echo htmlspecialchars($pizza['title']);?></h6>
-                        <div><?php echo htmlspecialchars($pizza['ingredients']);?></div>
+                        <div>
+                            <ul>
+                                <?php foreach(explode(',', $pizza['ingredients']) as $ingredient) { ?>
+                                    <li><?php echo htmlspecialchars($ingredient);?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
                     </div>
                     <div class="card-action right-align">
                         <a href="#" class="brand-text">more info</a>
