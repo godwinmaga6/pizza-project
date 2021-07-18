@@ -38,7 +38,7 @@ if(isset($_GET['id'])){
         <h5>Ingredients:</h5>
         <p><?php echo htmlspecialchars($pizza['ingredients']) ?></p>
     <?php else : ?>
-    
+        <h5>No such pizza exist</h5>
     <?php endif ?>
 </div>
 
