@@ -36,7 +36,7 @@ mysqli_free_result($result);
 mysqli_close($conn);
 
 //NTOE: Always echo to preview
-print_r($pizzas);
+// print_r($pizzas);
 
 ?>
 
