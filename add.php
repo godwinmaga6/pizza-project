@@ -62,6 +62,20 @@ if(isset($_POST['submit'])){
                 $errors['ingredients'] = 'Ingredients must be a comma separated list'; //assigning the error to the associative array of errors
             }
         }
+
+        //FINALLY
+        //TO RE-DIRECT USER TO THE HOMEPAGE or SOME OTHER PAGE WE DESIRE UPON VALID FORM SUBMISSION
+        //We have to check to see if there are no errors & if there are no errors we then re-direct user
+        if(array_filter($errors)){ // array_filter circles through an array and performs callBack functions
+            echo 'There are erros in the form'; // ..on each of the function which can be defined in the code block                                 
+        } else {                                    //NOTE: if we don't define the callBack function, it still runs through the array
+            // Re-direct user
+            header('Location: index.php'); //NOTE: in the future, we want to save the data to the database instead before we re-direct them to the homepage
+            //RESET DEFUALT VALUES FOR INPUT FIELD VARIABLE
+            $email = $title = $ingredients = "";
+            
+        }
+
 }; // END OF POST CHECK
 
 ?>
