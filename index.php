@@ -50,16 +50,17 @@ mysqli_close($conn);
     <div class="container">
         <div class="row">
         <!-- This is where we're gona circle through our pizzas and output them -->
-        <?php foreach($pizzas as $pizza) { ?>
+        <!-- changed syntax for looping with the ": & endforeach;" -->
+        <?php foreach($pizzas as $pizza) : ?>
             <div class="col s6 m3">
                 <div class="card z-depth-0">
                     <div class="card-content center">
                         <h6><?php echo htmlspecialchars($pizza['title']);?></h6>
                         <div>
                             <ul>
-                                <?php foreach(explode(',', $pizza['ingredients']) as $ingredient) { ?>
+                                <?php foreach(explode(',', $pizza['ingredients']) as $ingredient) : ?>
                                     <li><?php echo htmlspecialchars($ingredient);?></li>
-                                <?php } ?>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>
@@ -68,7 +69,7 @@ mysqli_close($conn);
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php endforeach; ?>
         </div>
     </div>
 
