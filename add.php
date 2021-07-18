@@ -54,7 +54,7 @@ if(isset($_POST['submit'])){
             // CHECKING IF it actually matches our RegEx using php
             if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){ //first parameter is matching against the second for validation
                 // echo 'Ingredients must be a comma separated list <br/>';
-                $errors['ingredients'] = 'Ingredients must be a comma separated list' //assigning the error to the associative array of errors
+                $errors['ingredients'] = 'Ingredients must be a comma separated list'; //assigning the error to the associative array of errors
             }
         }
 }; // END OF POST CHECK
@@ -70,10 +70,13 @@ if(isset($_POST['submit'])){
     <form action="add.php" method="POST" class="white">
         <label>Your Email:</label>
         <input type="text" name="email">
+        <div class="red-text"><?php echo $errors['email'];?></div>
         <label>Your Title:</label>
         <input type="text" name="title">
+        <div class="red-text"><?php echo $errors['title'];?></div>
         <label>Your Ingredients (comma separated):</label>
         <input type="text" name="ingredients">
+        <div class="red-text"><?php echo $errors['ingredients'];?></div>
 
         <div class="center">
             <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
