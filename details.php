@@ -30,7 +30,13 @@ if(isset($_GET['id'])){
 <html lang="en">
 <?php include('templates/header.php');?>
 
-<h2>Details</h2>
+<div class="container cemter">
+    <?php if() : ?>
+
+    <?php else : ?>
+    
+    <?php endif ?>
+</div>
 
 <?php include('templates/footer.php');?>
 </html>
