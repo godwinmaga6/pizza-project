@@ -1,17 +1,5 @@
 <?php 
-
-//conect to database
-//NOTE: we can connect using MySQLi or PDO
-//PDO stands for PHP Data Object (You learn this when you become better with MySQLi)
-$conn = mysqli_connect('localhost', 'maga', 'test1234', 'yommi_pizza');
-
-//connection
-if(!$conn){
-    echo 'connection error!' . mysqli_connect_error(); //mysqli_connect_error() lets us know what exactly is wrong with our connection
-}else{
-    echo 'connected';
-}
-
+include('config/db_connect.php');
 //NOTE: TO RETRIEVE DATA FROM THE DATABASE
 //1st we construct the query, 2nd we make the query 3rd we fetch the result from that query
 
