@@ -38,8 +38,8 @@ if(isset($_POST['submit'])){
             $title = $_POST['title'];
             // CHECKING IF it actually matches our RegEx using php
             if(!preg_match('/^[a-zA-Z\s]+$/', $title)){ //first parameter is matching against the second for validation
-                echo 'Title must be letters and spaces only <br/>';
-                $erros['title'] = 'Title must be letters and spaces only'; //assigning the error to the associative array of errors
+                // echo 'Title must be letters and spaces only <br/>';
+                $errors['title'] = 'Title must be letters and spaces only'; //assigning the error to the associative array of errors
             }
 
         }
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
             $ingredients = $_POST['ingredients'];
             // CHECKING IF it actually matches our RegEx using php
             if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){ //first parameter is matching against the second for validation
-                echo 'Ingredients must be a comma separated list <br/>';
+                // echo 'Ingredients must be a comma separated list <br/>';
                 $errors['ingredients'] = 'Ingredients must be a comma separated list' //assigning the error to the associative array of errors
             }
         }
