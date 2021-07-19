@@ -2,6 +2,23 @@
 
 include('config/db_connect.php');
 
+//Detect POST request for deleting data from the database
+if(isset($_POST['delete'])){
+    //succes
+    $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
+
+    $sql = "DELETE FROM pizzas WHERE id = $id_to_delete";
+
+    if(mysqli_query($conn, $sql)){
+        //success
+        header('Location: index.php');
+    }else {
+        echo 'query error: ' . mysqli_error($conn);
+    }
+
+} else {
+   // error 
+}
 // check GET request id parameter
 if(isset($_GET['id'])){
     $id = mysqli_real_escape_string($conn, $_GET['id']); //escape malicious entries
