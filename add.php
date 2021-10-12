@@ -12,8 +12,9 @@ $email = $title = $ingredients = "";
 //CREATE AN ASSOCIATIVE ARRAY VARIABLE TO STORE ERRORS
 $errors = array('email' => '', 'title' => '', 'ingredients' => '');
 
+//FORM VALIDATION
 //CHECKS if user is sending data to the server (sends an associative array) OR If empty
-if(isset($_POST['submit'])){ 
+if(isset($_POST['submit'])){ // if(isset($_POST['submit])){} //checks whether the submit button has been initialized by the user //Returns true only if user has clicked the submit button
     // echo htmlspecialchars($_POST['email']); //this email here is a key, the value of the key is what the user typed on the form
     // echo htmlspecialchars($_POST['title']); //the htmlspecialchars() checks for malicious code and converts it to strings
     // echo htmlspecialchars($_POST['ingredients']);
@@ -23,7 +24,7 @@ if(isset($_POST['submit'])){
         //check email
         if(empty($_POST['email'])){
             // echo 'An email is required <br/>'; //if empty is echo this
-            $errors['email'] = 'An email is required'; //if empty is adds error to array instead of echo in LINE 20
+            $errors['email'] = 'An email is required'; //if email field is empty adds error to array instead of echo in LINE 20
         }else {
             // echo htmlspecialchars($_POST['email']); //if not empty, we just echo what is expected in LINE 9
             // USING php built-in form filter to validate the email
@@ -36,7 +37,7 @@ if(isset($_POST['submit'])){
         }
         //check title
         if(empty($_POST['title'])){
-            // echo 'A title is required <br/>'; //if empty is echo this
+            // echo 'A title is required <br/>'; //if title field is empty  echo this
             $errors['title'] = 'A title is required'; //if empty is adds error to array instead of echo in LINE 34
         }else {
             // echo htmlspecialchars($_POST['title']); //if not empty, we just echo what is expected in LINE 10
@@ -52,7 +53,7 @@ if(isset($_POST['submit'])){
         }
         //check ingredients
         if(empty($_POST['ingredients'])){
-            // echo 'At least one ingredient is required <br/>'; //if empty is echo this
+            // echo 'At least one ingredient is required <br/>'; //if ingredients field is empty echo this
             $errors['ingredients'] = 'At least one ingredient is required'; //if empty is adds error to array instead of echo in LINE 50
         }else {
             // echo htmlspecialchars($_POST['ingredients']); //if not empty, we just echo what is expected in LINE 11
@@ -68,9 +69,9 @@ if(isset($_POST['submit'])){
 
         //FINALLY
         //TO RE-DIRECT USER TO THE HOMEPAGE or SOME OTHER PAGE WE DESIRE UPON VALID FORM SUBMISSION
-        //We have to check to see if there are no errors & if there are no errors we then re-direct user
+        //We have to check to see if there are no errors & if there are no errors we then save the data and re-direct user
         if(array_filter($errors)){ // array_filter circles through an array and performs callBack functions
-            echo 'There are erros in the form'; // ..on each of the function which can be defined in the code block                                 
+            echo 'There are errors in the form'; // ..on each of the function which can be defined in the code block                                 
         } else {                                    //NOTE: if we don't define the callBack function, it still runs through the array
             
             //SAVING DATA TO THE DATABASE
@@ -78,15 +79,19 @@ if(isset($_POST['submit'])){
             $email = mysqli_real_escape_string($conn, $_POST['email']); //which overides the email variable created at LINE 30
             $title = mysqli_real_escape_string($conn, $_POST['title']);
             $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
-            //NOW WE HAVE THE DATA WE WANT TO IMSERT TO OUR DATABASE
+            //NOW WE HAVE THE DATA WE WANT TO INSERT TO OUR DATABASE
             //Now we create the sql string that will do that for us
             $sql = "INSERT INTO pizzas(title,email,ingredients) VALUES('$title', '$email', '$ingredients')";
 
-            //save to db and check
+            //initialize/make the query in order to save to db and check. NOTE: (mysqli_qury($conn, $sql)) id the actual query
             if(mysqli_query($conn, $sql)){
                 //if success saved
                 // Re-direct user
             header('Location: index.php');
+
+                //NOTE Cycling through comma separated items using Explode function (feature is implemented in the html output section )
+                explode(',', $pizzas[0]['ingredients'])
+
             }else{
                 echo 'query error: ' . mysqli_error($conn);
             }
