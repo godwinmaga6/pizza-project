@@ -89,8 +89,8 @@ if(isset($_POST['submit'])){ // if(isset($_POST['submit])){} //checks whether th
                 // Re-direct user
             header('Location: index.php');
 
-                //NOTE Cycling through comma separated items using Explode function (feature is implemented in the html output section )
-                explode(',', $pizzas[0]['ingredients'])
+                //NOTE Cycling through comma separated items using Explode function (feature is implemented in index.php line 40 - 53 output section )
+                print_r(explode(',', $pizzas[0]['ingredients']));
 
             }else{
                 echo 'query error: ' . mysqli_error($conn);
